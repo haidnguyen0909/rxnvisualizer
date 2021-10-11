@@ -1,0 +1,25 @@
+strict digraph "" {
+         graph [layout="dot", rankdir="RL"];
+    node [label="\N"];
+    {% for molecule, image_filepath in molecules.items() %}
+    {{ molecule }} [
+        label="",
+        color="green",
+        shape="none",
+        image="{{ image_filepath }}"
+    ];
+    {% endfor %}
+
+    {% for template, image_filepath in templates.items() %}
+    {{ template }} [
+        label={{template}},
+        color="white",
+        shape="none",
+        width ="0.1"
+        #image="{{ template }}"
+    ];
+    {% endfor %}
+    {% for nodes in edges %}
+    {{ nodes[0] }} -> {{ nodes[1] }} [arrowhead="none"];
+    {% endfor %}
+}
